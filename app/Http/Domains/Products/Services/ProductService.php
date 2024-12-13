@@ -12,9 +12,10 @@ class ProductService
     public static function create($data)
     {
         return Product::create([
-            'id' => $data->id,
             'name' => $data->name,
+            'sku' => $data->sku,
             'price' => $data->price,
+            'published_at' => $data->published_at,
         ]);
     }
 }
