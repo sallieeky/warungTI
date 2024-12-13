@@ -2,14 +2,22 @@
 
 namespace App\Http\Domains\Shared;
 
-class JSONResponseService
+class ResponseService
 {
     public static function success($data, $message = 'Success', $status = 200)
     {
-        return response()->json([
+        return  [
             'status' => 'success',
             'message' => $message,
             'data' => $data
-        ], $status);
+        ];
+    }
+
+    public static function error($message = 'Error', $status = 400)
+    {
+        return [
+            'status' => 'error',
+            'message' => $message
+        ];
     }
 }
