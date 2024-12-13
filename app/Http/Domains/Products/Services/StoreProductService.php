@@ -6,12 +6,8 @@ use App\Http\Domains\Products\Request\StoreProductRequest;
 use App\Http\Domains\Shared\ResponseService;
 use Illuminate\Support\Facades\Validator;
 
-class ProductService
+class StoreProductService
 {
-    public function get() {
-        return Product::all();
-    }
-
     public function validate($data) {
         $validator = Validator::make($data, (new StoreProductRequest())->rules());
 

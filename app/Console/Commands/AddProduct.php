@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Http\Domains\Products\Services\ProductService;
+use App\Http\Domains\Products\Services\StoreProductService;
 
 class AddProduct extends Command
 {
@@ -26,7 +26,7 @@ class AddProduct extends Command
      *
      * @return int
      */
-    public function handle(ProductService $productService)
+    public function handle(StoreProductService $productService)
     {
         // Gather arguments from the command
         $data = [
