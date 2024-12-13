@@ -6,7 +6,7 @@ use App\Http\Domains\Products\Request\StoreProductRequest;
 use App\Http\Domains\Shared\ResponseService;
 use Illuminate\Support\Facades\Validator;
 
-class ProductService
+class ProductStoreService
 {
     public function get() {
         return Product::all();
