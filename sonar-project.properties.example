@@ -1,0 +1,4 @@
+sonar.projectKey=final-project-warungTI-ilham-iqbal
+
+sonar.sources=app/Http/Domains
+sonar.php.coverage.reportPaths=coverage.xml
