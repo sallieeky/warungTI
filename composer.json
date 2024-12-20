@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.0",
-        "laravel/sanctum": "^4.0",
+        "laravel/sanctum": "*",
         "laravel/tinker": "^2.9"
     },
     "require-dev": {
@@ -46,6 +46,9 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --ansi"
+        ],
+        "qc": [
+            "XDEBUG_MODE=coverage php artisan test --coverage --min=80 --coverage-clover coverage.xml"
         ]
     },
     "extra": {
