@@ -21,6 +21,6 @@ class AdjustStock
      */
     public function handle(ProductAdded $event): void
     {
-        dd('aa');
+        //
     }
 }
