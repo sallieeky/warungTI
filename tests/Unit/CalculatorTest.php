@@ -5,7 +5,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(CalculatorService::class)]
-class CalculatorServiceTest extends TestCase
+class CalculatorTest extends TestCase
 {
     public function test_add(): void
     {
