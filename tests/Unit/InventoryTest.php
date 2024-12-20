@@ -3,49 +3,49 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use App\Http\Domains\Products\Services\GetProductService;
-use App\Http\Domains\Products\Services\StoreProductService;
+use App\Http\Domains\Inventories\Services\GetInventoryService;
+use App\Http\Domains\Inventories\Services\StoreInventoryService;
 
-class ProductTest extends TestCase
+class InventoryTest extends TestCase
 {
     /**
-     * Test to ensure that the service can fetch all products.
+     * A basic unit test example.
      */
-    public function test_it_can_get_all_products(): void
+    public function test_it_can_get_all_inventories(): void
     {
-        $mockService = $this->getMockBuilder(GetProductService::class)
+        $mockService = $this->getMockBuilder(GetInventoryService::class)
             ->onlyMethods(['index'])
             ->getMock();
 
         $mockService->expects($this->once())
             ->method('index')
             ->willReturn([
-                ['name' => 'Product 1', 'sku' => 'SKU1', 'price' => 5000],
-                ['name' => 'Product 2', 'sku' => 'SKU2', 'price' => 10000],
+                ['product_id' => 1, 'name' => 'Warehouse 1', 'stock' => 50, 'location' => 'Bontang'],
+                ['product_id' => 2, 'name' => 'Warehouse 2', 'stock' => 100, 'location' => 'Bontang'],
             ]);
 
         $result = $mockService->index();
 
         $this->assertIsArray($result);
         $this->assertCount(2, $result);
-        $this->assertEquals('Product 1', $result[0]['name']);
+        $this->assertEquals('Warehouse 1', $result[0]['name']);
     }
 
     /**
      * Test to ensure that a product can be created.
      */
-    public function test_it_can_create_product(): void
+    public function test_it_can_create_inventory(): void
     {
         // Arrange: Mock the service and its behavior.
-        $mockService = $this->getMockBuilder(StoreProductService::class)
+        $mockService = $this->getMockBuilder(StoreInventoryService::class)
             ->onlyMethods(['create'])
             ->getMock();
 
         $mockData = [
-            'name' => 'Test Product',
-            'sku' => 'TEST-123',
-            'price' => 10000,
-            'published_at' => now(),
+            'product_id' => 3,
+            'name' => 'Warehouse 3',
+            'stock' => 1000,
+            'location' => 'Bontang',
         ];
 
         $mockService->expects($this->once())
@@ -65,9 +65,9 @@ class ProductTest extends TestCase
 
         // Assert: Verify that the product was created correctly.
         $this->assertNotNull($product);
-        $this->assertEquals('Test Product', $product['name']);
-        $this->assertEquals('TEST-123', $product['sku']);
-        $this->assertEquals(10000, $product['price']);
-        $this->assertEquals(now()->toDateTimeString(), $product['published_at']);
+        $this->assertEquals(3, $product['product_id']);
+        $this->assertEquals('Warehouse 3', $product['name']);
+        $this->assertEquals(1000, $product['stock']);
+        $this->assertEquals('Bontang', $product['location']);
     }
 }
