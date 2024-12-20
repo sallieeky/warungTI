@@ -2,7 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Events\ProductAdded;
+use App\Events\OrderCreated;
+use App\Http\Domains\Inventories\Model\Inventory;
+use App\Http\Domains\Inventories\Services\SubtractStockInventoryService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -19,8 +21,10 @@ class AdjustStock
     /**
      * Handle the event.
      */
-    public function handle(ProductAdded $event): void
+    public function handle(OrderCreated $event): void
     {
-        dd('aa');
+        $order = $event->order;
+        $subtractStockInventoryService = new SubtractStockInventoryService();
+        $subtractStockInventoryService->execute($order);
     }
 }
