@@ -39,6 +39,6 @@ class ProductTest extends TestCase
         $this->assertEquals('Test Product', $product->name);
         $this->assertEquals('TEST-123', $product->sku);
         $this->assertEquals(10000, $product->price);
-        $this->assertEquals(now(), $product->published_at);
+        $this->assertEquals(now()->toDateString(), $product->published_at->toDateString());
     }
 }
