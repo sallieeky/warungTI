@@ -2,7 +2,6 @@
 
 namespace App\Http\Domains\Inventories\Services;
 
-use App\Events\ProductAdded;
 use App\Http\Domains\Inventories\Model\Inventory;
 use App\Http\Domains\Inventories\Request\StoreInventoryRequest;
 use App\Http\Domains\Shared\ResponseService;

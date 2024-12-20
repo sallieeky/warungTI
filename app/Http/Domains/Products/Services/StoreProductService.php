@@ -2,7 +2,6 @@
 
 namespace App\Http\Domains\Products\Services;
 
-use App\Events\ProductAdded;
 use App\Http\Domains\Products\Model\Product;
 use App\Http\Domains\Products\Request\StoreProductRequest;
 use App\Http\Domains\Shared\ResponseService;
@@ -37,8 +36,6 @@ class StoreProductService
             'price' => $data['price'],
             'published_at' => $data['published_at'],
         ]);
-
-        ProductAdded::dispatch($product);
 
         return ResponseService::success($product);
     }

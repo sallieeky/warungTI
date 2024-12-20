@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Events\OrderCreated;
-use App\Events\ProductAdded;
 use App\Listeners\AdjustStock;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
