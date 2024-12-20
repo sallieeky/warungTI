@@ -31,7 +31,7 @@ class ProductTest extends TestCase
         ];
         
         $service = app(\App\Http\Domains\Products\Services\StoreProductService::class);
-        $product = $service->create($data);
+        $response = $service->create($data);
 
         $product = $response['data'] ?? null;
 
