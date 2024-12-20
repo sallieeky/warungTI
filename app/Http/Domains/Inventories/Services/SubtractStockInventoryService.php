@@ -11,8 +11,9 @@ class SubtractStockInventoryService
     {
         $product_id = $order->product_id;
         $inventory = Inventory::where('stock', '>', $order->total_amount)->where('product_id', $product_id)->first();
+        
         if(!$inventory) {
-            throw new \Exception('Inventory not found');
+            throw new \Exception('Inventory out of stock and inventory has not been created');
         }
 
         if($inventory->stock == 0) {

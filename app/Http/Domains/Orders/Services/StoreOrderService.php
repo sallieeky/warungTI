@@ -43,11 +43,13 @@ class StoreOrderService
                 'product_id' => $data['product_id']
             ]);
             OrderCreated::dispatch($order);
+            DB::commit();
 
             return ResponseService::success($order);
         } catch (Exception $err) {
-            return ResponseService::error('Failed to create product');
             DB::rollBack();
+            return ResponseService::error($err->getMessage());
+            
         }
     }
 }
