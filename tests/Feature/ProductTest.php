@@ -27,7 +27,7 @@ class ProductTest extends TestCase
             'price' => 10000,
             'published_at' => now(),
         ];
-        
+
         $service = app(\App\Http\Domains\Products\Services\StoreProductService::class);
         $response = $service->create($data);
 
@@ -38,5 +38,21 @@ class ProductTest extends TestCase
         $this->assertEquals('TEST-123', $product->sku);
         $this->assertEquals(10000, $product->price);
         $this->assertEquals(now()->toDateString(), $product->published_at->toDateString());
+    }
+
+    public function test_it_cannot_create_product(): void
+    {
+        $data = [
+            'name' => 'Test Product',
+            'sku' => 'TEST-123',
+            'price' => null,
+            'published_at' => now(),
+        ];
+
+        $service = app(\App\Http\Domains\Products\Services\StoreProductService::class);
+        $response = $service->create($data);
+
+        $this->assertEquals('error', $response['status']);
+        $this->assertStringContainsString('The price field is required.', $response['message']);
     }
 }
